@@ -2,7 +2,7 @@
 // import { getDatabase } from "../../lib/notion";
 // import { Text } from "../../pages/blog/detail/[id].js";
 
-// export const databaseId = process.env.NOTION_DATABASE_ID;
+// export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
 // export default async function BlogList({ posts }) {
 //   return (

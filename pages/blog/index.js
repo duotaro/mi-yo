@@ -6,7 +6,7 @@ import Layout from '../../components/layout'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-export const databaseId = process.env.NOTION_DATABASE_ID;
+export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
 export default function Blog({ posts }) {
     // genre filter

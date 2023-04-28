@@ -4,7 +4,7 @@ import { Text } from "./blog/detail/[id].js"
 import { getDatabase } from "../lib/notion";
 import Layout from '../components/layout'
 
-export const databaseId = process.env.NOTION_DATABASE_ID;
+export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
   return (

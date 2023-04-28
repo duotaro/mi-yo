@@ -3,7 +3,7 @@ import Link from "next/link";
 import Layout from '../../components/layout'
 import styles from "../index.module.css";
 
-export const databaseId = process.env.NOTION_DATABASE_ID;
+export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
 export default function About({  }) {
   return (
