@@ -61,8 +61,6 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
-      - run: npm ci
-      - run: npm run build
         env:
           NEXT_PUBLIC_NOTION_TOKEN: ${{ secrets.NEXT_PUBLIC_NOTION_TOKEN }}
           NEXT_PUBLIC_NOTION_DATABASE_ID: ${{ secrets.NEXT_PUBLIC_NOTION_DATABASE_ID }}
