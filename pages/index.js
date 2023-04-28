@@ -69,7 +69,7 @@ export default function Home({ posts }) {
 }
 
 export const getStaticProps = async () => {
-  const database = await getDatabase(databaseId);
+  const database = await getDatabase('16a4d25a67954c94833d6bd9bd1ad737');
 
   return {
     props: {
