@@ -5,7 +5,9 @@ import { getDatabase } from "../lib/notion";
 import Layout from '../components/layout'
 
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
-
+console.log("▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲")
+console.log(databaseId)
+console.log("▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲")
 export default function Home({ posts }) {
   return (
     <Layout>
