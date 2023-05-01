@@ -574,9 +574,10 @@ progress {
 }
 
 .display-4 {
-  font-size: calc(1.475rem + 2.7vw);
-  font-weight: 300;
-  line-height: 1.2;
+  padding: 1rem 2rem;
+  border-top: 3px dotted #000;
+  border-bottom: 3px dotted #000;
+  margin: 50px auto
 }
 @media (min-width: 1200px) {
   .display-4 {
@@ -596,13 +597,14 @@ progress {
 }
 
 .display-6 {
-  font-size: calc(1.375rem + 1.5vw);
-  font-weight: 300;
-  line-height: 1.2;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-left: 4px dotted #000;
+  margin-top: 30px
 }
 @media (min-width: 1200px) {
   .display-6 {
-    font-size: 2.5rem;
+    /* font-size: 2.5rem; */
   }
 }
 
