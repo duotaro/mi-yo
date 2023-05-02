@@ -1,31 +1,32 @@
+export const DOMAIN = 'https://eurekayamauchi.github.io'
 export const GENRE_LIST = [
     {
         name: 'Home',
-        url : process.env.NEXT_PUBLIC_DOMAIN
+        url : `${DOMAIN}`
     },
     {
         name: 'AI',
-        url : `${process.env.NEXT_PUBLIC_DOMAIN}/ai_posts`
+        url : `${DOMAIN}/ai_posts`
     },
     {
         name: 'デザイン',
-        url : `${process.env.NEXT_PUBLIC_DOMAIN}/css_posts`
+        url : `${DOMAIN}/css_posts`
     },
     {
         name: '時間管理',
-        url : `${process.env.NEXT_PUBLIC_DOMAIN}/time`
+        url : `${DOMAIN}/time`
     },
     {
         name: 'Book',
-        url : `${process.env.NEXT_PUBLIC_DOMAIN}/books`
+        url : `${DOMAIN}/books`
     },
     {
         name: 'Movies',
-        url : `${process.env.NEXT_PUBLIC_DOMAIN}/movies`
+        url : `${DOMAIN}/movies`
     },
     {
         name: 'Technology',
-        url : `${process.env.NEXT_PUBLIC_DOMAIN}/tech`
+        url : `${DOMAIN}/tech`
     }
 ]
 
