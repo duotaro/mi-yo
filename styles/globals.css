@@ -3185,7 +3185,7 @@ textarea.form-control-lg {
   color: var(--bs-btn-color);
 }
 .btn-link:hover {
-  color: var(--bs-btn-hover-color);
+  color: #0a58ca;
 }
 
 .btn-lg, .btn-group-lg > .btn {
@@ -3677,6 +3677,7 @@ textarea.form-control-lg {
   color: var(--bs-nav-link-color);
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  white-space: nowrap
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
@@ -3684,10 +3685,10 @@ textarea.form-control-lg {
   }
 }
 .nav-link:hover, .nav-link:focus {
-  color: var(--bs-nav-link-hover-color);
+  color: #0a58ca;
 }
 .nav-link.disabled {
-  color: var(--bs-nav-link-disabled-color);
+  color: #6c757d;
   pointer-events: none;
   cursor: default;
 }
@@ -3714,7 +3715,7 @@ textarea.form-control-lg {
   border-color: var(--bs-nav-tabs-link-hover-border-color);
 }
 .nav-tabs .nav-link.disabled, .nav-tabs .nav-link:disabled {
-  color: var(--bs-nav-link-disabled-color);
+  color: #6c757d;
   background-color: transparent;
   border-color: transparent;
 }
@@ -3741,7 +3742,7 @@ textarea.form-control-lg {
   border-radius: var(--bs-nav-pills-border-radius);
 }
 .nav-pills .nav-link:disabled {
-  color: var(--bs-nav-link-disabled-color);
+  color: #6c757d;
   background-color: transparent;
   border-color: transparent;
 }
@@ -3755,13 +3756,15 @@ textarea.form-control-lg {
 .nav-fill .nav-item {
   flex: 1 1 auto;
   text-align: center;
+
 }
 
 .nav-justified > .nav-link,
 .nav-justified .nav-item {
-  flex-basis: 0;
-  flex-grow: 1;
+  /* flex-basis: 0;
+  flex-grow: 1; */
   text-align: center;
+  padding: 0 1.5rem
 }
 
 .nav-fill .nav-item .nav-link,
@@ -10873,5 +10876,34 @@ textarea.form-control-lg {
   }
   .d-print-none {
     display: none !important;
+  }
+}
+
+.gnav {
+  flex-direction: column;
+}
+
+.img-responsive {
+  display: block;
+  height: auto;
+  max-height: 250px;
+}
+
+@media (min-width: 576px) {
+  .img-responsive {
+    min-height: 170px;
+    max-height: 220px;
+  }
+}
+@media (min-width: 768px) {
+  .img-responsive {
+    min-height: 230px;
+    max-height: 230px;
+  }
+}
+@media (min-width: 992px) {
+  .img-responsive {
+    min-height: 220px;
+    max-height: 220px;
   }
 }
