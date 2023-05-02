@@ -5,6 +5,7 @@ import { GENRE_LIST, AD_CLIENT_ID } from "../const";
 import AdSense from '../components/ads/ad'
 
 export default function Layout({ children }) {
+  console.log(GENRE_LIST)
   return (
     <>
       <Head>
@@ -29,6 +30,7 @@ export default function Layout({ children }) {
                   <a className="nav-link text-white" aria-current="page" href={genre.url}>
                     {genre.name}
                   </a>
+                  <p style={{display: 'none'}}>{genre.url}</p>
                 </li>
               )
              })}
