@@ -21,22 +21,21 @@ export default function Layout({ children }) {
       <Navbar />
       <AdSense />
       <nav className="navbar navbar-expand navbar-light bg-dark gnav">
-        <div className="container-fluid"> 
-          <div className="text-center text-white w-100">
-            <ul className="navbar-nav nav-justified " style={{width:'100%'}}>
-             {GENRE_LIST.map((genre) => {
-              return (
-                <li className="nav-item" key={genre.name}>
-                  <a className="nav-link text-white" aria-current="page" href={genre.url}>
-                    {genre.name}
-                  </a>
-                  <p style={{display: 'none'}}>{genre.url}</p>
-                </li>
-              )
-             })}
-            </ul>
-          </div>
+        <div className="text-center text-white w-100">
+          <ul className="navbar-nav ">
+            {GENRE_LIST.map((genre) => {
+            return (
+              <li className="nav-item" key={genre.name}>
+                <a className="nav-link text-white" aria-current="page" href={genre.url}>
+                  {genre.name}
+                </a>
+                <p style={{display: 'none'}}>{genre.url}</p>
+              </li>
+            )
+            })}
+          </ul>
         </div>
+      
       </nav>
       <main>{children}</main>
       <Footer />

@@ -10,7 +10,7 @@ export const GENRE_LIST = [
     },
     {
         name: 'デザイン',
-        url : `${DOMAIN}/css_posts`
+        url : `${DOMAIN}/design_posts`
     },
     {
         name: '時間管理',
