@@ -21,8 +21,8 @@ export default function Layout({ children }) {
       <Navbar />
       <AdSense />
       <nav className="navbar navbar-expand navbar-light bg-dark gnav">
-        <div className="text-center text-white w-100">
-          <ul className="navbar-nav ">
+        <div className="text-center text-white ">
+          <ul className="nav nav-pills nav-fill">
             {GENRE_LIST.map((genre) => {
             return (
               <li className="nav-item" key={genre.name}>

@@ -67,7 +67,7 @@ export default function Home({ posts }) {
                   }
                 );
                 return (
-                    <div className="mb-5" key={post.id}>
+                    <div className="col mb-5" key={post.id}>
                         <div className="card h-100">
                             <img className="card-img-top border-bottom img-responsive" src={post.properties.Src.rich_text[0].href} alt="..." />
                             <div className="card-body p-4">
