@@ -90,7 +90,7 @@ export default function Home({ posts }) {
           {/* Side widgets*/}
           <section className="col-lg-4">
             {/* Search widget*/}
-            <div className="card mb-4">
+            {/* <div className="card mb-4">
                 <div className="card-header bg-dark text-white">Search</div>
                 <div className="card-body">
                     <div className="input-group">
@@ -98,7 +98,7 @@ export default function Home({ posts }) {
                         <button className="btn btn-primary" id="button-search" type="button">Go!</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
             {/* Categories widget*/}
             <div className="card mb-4">
               <div className="card-header  bg-dark text-white">Categories</div>
@@ -121,12 +121,12 @@ export default function Home({ posts }) {
               </div>
             </div>
             {/* Side widget*/}
-            <div className="card mb-4">
+            {/* <div className="card mb-4">
                 <div className="card-header  bg-dark text-white">スポンサードリンク</div>
-                <div className="card-body">
+                <div className="card-body"> */}
                 {/* 　<AdSense slot={'test'}/> */}
-                </div>
-            </div>
+                {/* </div>
+            </div> */}
           </section>
         </div>{/* .row */}
       </div>{/* .container */}
