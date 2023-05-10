@@ -3,6 +3,7 @@ import Navbar from './navbar'
 import Footer from './footer'
 import { GENRE_LIST, AD_CLIENT_ID } from "../const";
 import AdSense from '../components/ads/ad'
+import Script from 'next/script'
 
 export default function Layout({ children }) {
   console.log(GENRE_LIST)
@@ -17,6 +18,16 @@ export default function Layout({ children }) {
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT_ID}`}
           crossOrigin="anonymous"
         ></script>
+        <Script>{`
+          window.dataLayer = window.dataLayer || [];
+          const gtag = () => {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+  
+          gtag('config', 'G-7K32FX1NCM');
+          `}
+        </Script>
       </Head>
       <Navbar />
       <AdSense />
