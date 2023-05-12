@@ -16,5 +16,10 @@ export const createDatabaseId = (genre) =>{
         databaseId = process.env.NEXT_PUBLIC_NOTION_TECH_DATABASE_ID;
       }
     }
+
+    console.log("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+    console.log(databaseId)
+    console.log(process.env)
+    console.log("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
     return databaseId
 }
