@@ -1,5 +1,9 @@
 export const createDatabaseId = (genre) =>{
 
+    console.log("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+    console.log(genre)
+    console.log("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+
     let databaseId = process.env.NEXT_PUBLIC_NOTION_AI_DATABASE_ID;
     if(genre){
       if(genre == 'ai'){

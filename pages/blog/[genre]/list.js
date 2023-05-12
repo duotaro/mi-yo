@@ -4,7 +4,7 @@ import { Text } from "./detail/[id].js"
 import { getDatabase } from "../../../lib/notion.js";
 import { GENRES } from "../../../const/index.js";
 import Layout from '../../../components/layout.js'
-
+import { createDatabaseId } from "../../../utils/index.js";
 export default function Home({ posts, genre }) {
 
   return (
@@ -86,7 +86,6 @@ export default function Home({ posts, genre }) {
 
 export const getStaticPaths = () => {
   let map = GENRES.map((genre) => ({ params: { genre:  genre } }));
-  console.log(map)
   return {
     paths: GENRES.map((genre) => ({ params: { genre:  genre } })),
     fallback: false,
@@ -96,20 +95,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = async (context) => {
   const { genre } = context.params
-  let databaseId = process.env.NEXT_PUBLIC_NOTION_AI_DATABASE_ID;
-
-  if(genre){
-    if(genre == 'ai'){
-      databaseId = process.env.NEXT_PUBLIC_NOTION_AI_DATABASE_ID;
-    } else if (genre == 'design'){
-      databaseId = process.env.NEXT_PUBLIC_NOTION_DESIGN_DATABASE_ID;
-    } else if (genre == 'time'){
-      databaseId = process.env.NEXT_PUBLIC_NOTION_TIME_DATABASE_ID;
-    } else if (genre == 'tech'){
-      databaseId = process.env.NEXT_PUBLIC_NOTION_TECH_DATABASE_ID;
-    }
-  }
-
+  let databaseId = createDatabaseId(genre)
   const database = await getDatabase(databaseId);
   return {
     props: {
