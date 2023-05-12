@@ -5,7 +5,6 @@ import { GENRE_LIST, AD_CLIENT_ID } from "../const";
 import AdSense from '../components/ads/ad'
 
 export default function Layout({ children }) {
-  console.log(GENRE_LIST)
   return (
     <>
       <Head>

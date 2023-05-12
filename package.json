@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build && next export && next-sitemap --config next-sitemap.js",
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "deploy": "git add . && git commit -m 'release' && git push origin master"
+    "deploy": "next-sitemap --config next-sitemap.js && git add . && git commit -m 'release' && git push origin master"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.3",
