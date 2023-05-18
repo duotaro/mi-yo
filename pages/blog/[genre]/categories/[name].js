@@ -3,15 +3,15 @@ import Link from "next/link";
 import { Text } from "../detail/[id].js"
 import { getDatabase } from "../../../../lib/notion.js";
 import Layout from '../../../../components/layout.js'
-import { GENRES } from "../../../../const/index.js";
+import { GENRES, GENRE_TITLE_MAP } from "../../../../const/index.js";
 import { createDatabaseId } from "../../../../utils/index.js";
+import Side from "../../../../components/parts/widget/side.js";
 
-export default function Tags({ posts, tagList, genre }) {
-
+export default function Tags({ posts, tagList, genre, pageTitle, tagName }) {
   return (
     <Layout>
       <Head>
-        <title>Techvenience - AI/人工知能 -</title>
+        <title>{tagName} / {pageTitle} - Techvenience - </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mt-5">
@@ -37,7 +37,7 @@ export default function Tags({ posts, tagList, genre }) {
                                     <div className="flex-column justify-content-center small text-warning mb-2">
                                       {post.properties.Tags.multi_select.map((tag) => {
                                         return (
-                                          <Link href={`/blog/${genre}/categories/${tag.name}/`} className="bi-star-fill btn btn-outline-secondary m-1"  key={tag.id}>{tag.name}</Link>
+                                          <Link href={`/blog/${genre}/categories/${tag.name}/`} className=" btn btn-outline-secondary m-1"  key={tag.id}>{tag.name}</Link>
                                         )
                                       })}
                                     </div>
@@ -57,26 +57,24 @@ export default function Tags({ posts, tagList, genre }) {
           </section>
           {/* Side widgets*/}
           <section className="col-lg-4">
-            {/* Search widget*/}
-            {/* <Search /> */}
+            <Side />
             {/* Categories widget*/}
             <div className="card mb-4">
-              <div className="card-header  bg-dark text-white">AI Categories</div>
-              <div className="card-body">
-                <div className="flex-column justify-content-center small text-warning mb-2">
-                  {tagList.map((tag) => {
-                    return (
-                      <Link href={`/blog/${genre}/categories/${tag}/`} className="bi-star-fill btn btn-outline-secondary m-1"  key={tag}>{tag}</Link>
-                    )
-                  })}
+                <div className="card-header  bg-dark text-white"><i class="bi bi-tags m-1"></i>Categories</div>
+                <div className="card-body">
+                    <div className="row">
+                        <div className="container">
+                            <div className="row">
+                              {tagList.map((tag) => {
+                                return (
+                                  <div className="col-3" style={{width:'fit-content'}}><Link href={`/blog/${genre}/categories/${tag}`} className="col  btn btn-outline-secondary m-1"  key={tag}>{tag}</Link></div>
+                                )
+                              })}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            {/* Side widget*/}
-            {/* <div className="card mb-4">
-                <div className="card-header  bg-dark text-white">Side Widget</div>
-                <div className="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-            </div> */}
           </section>
         </div>{/* .row */}
       </div>{/* .container */}
@@ -114,6 +112,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const { genre, name } = context.params;
+
+  const pageTitle = GENRE_TITLE_MAP[genre]
   
   let databaseId = createDatabaseId(genre)
   const database = await getDatabase(databaseId)
@@ -150,7 +150,9 @@ export const getStaticProps = async (context) => {
     props: {
       posts: posts,
       tagList: tagList,
-      genre: genre
+      genre: genre,
+      pageTitle: pageTitle,
+      tagName : name
     },
     revalidate: 1
   };

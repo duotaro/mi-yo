@@ -4,8 +4,9 @@ import { getDatabase, getPage, getBlocks } from "../../../../lib/notion";
 import Link from "next/link";
 import styles from "../../../post.module.css";
 import Layout from "../../../../components/layout"
-import { GENRES } from "../../../../const";
+import { GENRES, GENRE_TITLE_MAP } from "../../../../const";
 import { createDatabaseId } from "../../../../utils";
+import Side from "../../../../components/parts/widget/side";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -241,7 +242,7 @@ const renderBlock = (block) => {
   }
 };
 
-export default function Post({ page, blocks, tagList, genre }) {
+export default function Post({ page, blocks, tagList, genre, title }) {
   if (!page || !blocks) {
     return <div />;
   }
@@ -271,8 +272,7 @@ export default function Post({ page, blocks, tagList, genre }) {
   return (
     <Layout>
       <Head>
-        <title>{pageTitle}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{pageTitle} / {title} - Techvenience -</title>
       </Head>
 
       <div className="container mt-5">
@@ -287,7 +287,7 @@ export default function Post({ page, blocks, tagList, genre }) {
                             </div>
                             {page.properties.Tags.multi_select.map((tag) => {
                               return (
-                                <Link href={`/blog/${genre}/categories/${tag.name}`} className="bi-star-fill btn btn-outline-secondary m-1"  key={tag.id}>{tag.name}</Link>
+                                <Link href={`/blog/${genre}/categories/${tag.name}`} className=" btn btn-outline-secondary m-1"  key={tag.id}>{tag.name}</Link>
                               )
                             })}
                         </header>
@@ -315,26 +315,17 @@ export default function Post({ page, blocks, tagList, genre }) {
                 </div>
                 {/* Side widgets*/}
                 <div className="col-lg-4">
-                    {/* Search widget*/}
-                    {/* <div className="card mb-4">
-                        <div className="card-header bg-dark text-white">Search</div>
-                        <div className="card-body">
-                            <div className="input-group">
-                                <input className="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button className="btn btn-primary" id="button-search" type="button">Go!</button>
-                            </div>
-                        </div>
-                    </div> */}
+                    <Side />
                     {/* Categories widget*/}
                     <div className="card mb-4">
-                        <div className="card-header  bg-dark text-white">Categories</div>
+                        <div className="card-header  bg-dark text-white"><i class="bi bi-tags m-1"></i>Categories</div>
                         <div className="card-body">
                             <div className="row">
                                 <div className="container">
                                     <div className="row">
                                       {tagList.map((tag) => {
                                         return (
-                                          <div className="col-3" style={{width:'fit-content'}}><Link href={`/blog/${genre}/categories/${tag.name}`} className="col bi-star-fill btn btn-outline-secondary m-1"  key={tag}>{tag}</Link></div>
+                                          <div className="col-3" style={{width:'fit-content'}}><Link href={`/blog/${genre}/categories/${tag}`} className="col  btn btn-outline-secondary m-1"  key={tag}>#{tag}</Link></div>
                                         )
                                       })}
                                     </div>
@@ -375,7 +366,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const { genre, id } = context.params;
-
+  let title = GENRE_TITLE_MAP[genre]
   let databaseId = createDatabaseId(genre)
   const database = await getDatabase(databaseId)
   let tagList = []
@@ -388,6 +379,7 @@ export const getStaticProps = async (context) => {
       if(tagList.indexOf(tag.name) < 0){
         tagList.push(tag.name)
       }
+      title += " " + tag.name
     })
   }
 
@@ -399,7 +391,8 @@ export const getStaticProps = async (context) => {
       page,
       blocks,
       tagList,
-      genre
+      genre,
+      title
     },
     revalidate: 1,
   };

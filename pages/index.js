@@ -71,19 +71,11 @@ export default function Home({ }) {
           {/* Side widgets*/}
           <section className="col-lg-4">
             <Side />
-            {/* Search widget*/}
-            {/* <div className="card mb-4">
-                <div className="card-header bg-dark text-white">Search</div>
-                <div className="card-body">
-                    <div className="input-group">
-                        <input className="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button className="btn btn-primary" id="button-search" type="button">Go!</button>
-                    </div>
-                </div>
-            </div> */}
             {/* Categories widget*/}
             <div className="card mb-4">
-              <div className="card-header  bg-dark text-white">Categories</div>
+              <div className="card-header  bg-dark text-white">
+                <i class="bi bi-tags m-1"></i>Categories
+              </div>
               <div className="card-body">
                   <div className="row">
                       <div className="container">

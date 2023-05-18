@@ -42,6 +42,15 @@ export const GENRE_LIST = [
         icon: "bi bi-cpu"
     }
 ]
+/**
+ * genre title map
+ */
+export const GENRE_TITLE_MAP = {
+    'ai' : 'AI 人工知能 CHAT-GPT',
+    'design' : 'CSS デザイン Bootstrap Tailwind',
+    'time' : '時間管理 タスク管理 プロジェクト管理 マネジメント',
+    'tech' : '最新技術 テクノロジー Technology イノベーション',
+}
 /** 広告ID */
 export const AD_CLIENT_ID = process.env.NEXT_PUBLIC_AD_CLIENT_ID
 /** 人気記事 */
