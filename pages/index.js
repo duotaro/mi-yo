@@ -5,6 +5,7 @@ import Layout from '../components/layout.js'
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 import { GENRE_LIST, GENRES } from "../const/index.js";
 import AdSense from '../components/ads/ad'
+import Side from '../components/parts/widget/side.js'
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -69,6 +70,7 @@ export default function Home({ }) {
           </section>
           {/* Side widgets*/}
           <section className="col-lg-4">
+            <Side />
             {/* Search widget*/}
             {/* <div className="card mb-4">
                 <div className="card-header bg-dark text-white">Search</div>
@@ -89,8 +91,8 @@ export default function Home({ }) {
                             {tagList.map((tag) => {
                               return (
                                 <div className="col-3" style={{width:'fit-content'}} key={tag.name}>
-                                  <a href={tag.url} className="col bi-star-fill btn btn-outline-secondary m-1"  key={tag.name}>
-                                    {tag.name}
+                                  <a href={tag.url} className="col  btn btn-outline-secondary m-1"  key={tag.name}>
+                                    #{tag.name}
                                   </a>
                                 </div>
                               )
@@ -100,13 +102,6 @@ export default function Home({ }) {
                   </div>
               </div>
             </div>
-            {/* Side widget*/}
-            {/* <div className="card mb-4">
-                <div className="card-header  bg-dark text-white">スポンサードリンク</div>
-                <div className="card-body"> */}
-                {/* 　<AdSense slot={'test'}/> */}
-                {/* </div>
-            </div> */}
           </section>
         </div>{/* .row */}
       </div>{/* .container */}

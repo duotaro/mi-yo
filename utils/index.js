@@ -1,9 +1,4 @@
 export const createDatabaseId = (genre) =>{
-
-    console.log("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
-    console.log(genre)
-    console.log("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
-
     let databaseId = 'bf3da636b9d84ab18f3ad0d242584468'//process.env.NEXT_PUBLIC_NOTION_AI_DATABASE_ID;
     if(genre){
       if(genre == 'ai'){
@@ -16,10 +11,5 @@ export const createDatabaseId = (genre) =>{
         databaseId = '301632c9a07c4b0d9e9138b4452b12be'//process.env.NEXT_PUBLIC_NOTION_TECH_DATABASE_ID;
       }
     }
-
-    console.log("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
-    console.log(databaseId)
-    console.log(process.env)
-    console.log("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
     return databaseId
 }

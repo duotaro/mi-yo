@@ -60,7 +60,7 @@ export default function Home({ posts, genre }) {
             {/* <Search /> */}
             {/* Categories widget*/}
             <div className="card mb-4">
-              <div className="card-header  bg-dark text-white">AI Categories</div>
+              <div className="card-header  bg-dark text-white">Categories</div>
               <div className="card-body">
                 <div className="flex-column justify-content-center small text-warning mb-2">
                   {GENRES.map((genreItem) => {

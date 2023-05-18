@@ -8,9 +8,9 @@ export default function Layout({ children }) {
   return (
     <>
       <Head>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <meta name="description" content="TechnologyとConvenienceを組み合わせた造語。​ITがもたらす便利なものを紹介します。最近はAI関連の記事が多いです。ChatGPT / Google Bard / OpenAI GPT / Replika" />
         <meta property="og:image"  contents="https://cdn-ak.f.st-hatena.com/images/fotolife/d/duo-taro100/20230501/20230501153944.jpg"></meta>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
       <AdSense />
@@ -20,7 +20,7 @@ export default function Layout({ children }) {
             {GENRE_LIST.map((genre) => {
             return (
               <li className="nav-item" key={genre.name}>
-                <a className="nav-link text-white" aria-current="page" href={genre.url}>
+                <a className="nav-link " aria-current="page" href={genre.url}>
                   {genre.name}
                 </a>
                 <p style={{display: 'none'}}>{genre.url}</p>
