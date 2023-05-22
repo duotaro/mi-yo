@@ -7,6 +7,7 @@ import Layout from "../../../../components/layout"
 import { GENRES, GENRE_TITLE_MAP } from "../../../../const";
 import { createDatabaseId } from "../../../../utils";
 import Side from "../../../../components/parts/widget/side";
+import { TwitterTweetEmbed } from 'react-twitter-embed'
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -229,6 +230,15 @@ const renderBlock = (block) => {
     }
     case "embed": {
       const url = value.url;
+      // twitter埋め込み
+      if(url.indexOf("https://twitter.com") > -1){
+        const pos = url.indexOf('?')
+        let tweetId = url.substring(0, pos).split('/')[5]
+        if (!tweetId) {
+          tweetId = url.split('/')[5]
+        }
+        return (<TwitterTweetEmbed key={id} tweetId={tweetId} options={{ margin: '0 auto;' }} />)
+      }
       return (
         <a href={url} target="_brank" className={styles.bookmark}>
           {url}
