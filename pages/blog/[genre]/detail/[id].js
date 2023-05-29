@@ -36,7 +36,7 @@ export const Text = ({ text }) => {
   });
 };
 
-const renderNestedList = (block) => {
+const renderNestedList = (block, genre) => {
   const { type } = block;
   const value = block[type];
   if (!value) return null;
@@ -44,12 +44,12 @@ const renderNestedList = (block) => {
   const isNumberedList = value.children[0].type === "numbered_list_item";
 
   if (isNumberedList) {
-    return <ol>{value.children.map((block) => renderBlock(block))}</ol>;
+    return <ol>{value.children.map((block) => renderBlock(block, genre))}</ol>;
   }
-  return <ul>{value.children.map((block) => renderBlock(block))}</ul>;
+  return <ul>{value.children.map((block) => renderBlock(block, genre))}</ul>;
 };
 
-const renderBlock = (block) => {
+const renderBlock = (block, genre) => {
   const { type, id } = block;
   const value = block[type];
 
@@ -75,7 +75,7 @@ const renderBlock = (block) => {
         const mentinTitle = txtArray[0].plain_text
         return (
           <p>
-            <Link href={`/blog/detail/${pageId}`}>
+            <Link href={`/blog/${genre}/detail/${pageId}`}>
               {mentinTitle}
             </Link>
           </p>
@@ -105,17 +105,17 @@ const renderBlock = (block) => {
         </h3>
       );
     case "bulleted_list": {
-      return <ul>{value.children.map((child) => renderBlock(child))}</ul>;
+      return <ul>{value.children.map((child) => renderBlock(child, genre))}</ul>;
     }
     case "numbered_list": {
-      return <ol>{value.children.map((child) => renderBlock(child))}</ol>;
+      return <ol>{value.children.map((child) => renderBlock(child, genre))}</ol>;
     }
     case "bulleted_list_item":
     case "numbered_list_item":
       return (
         <li key={block.id}>
           <Text text={value.rich_text} />
-          {!!value.children && renderNestedList(block)}
+          {!!value.children && renderNestedList(block, genre)}
         </li>
       );
     case "to_do":
@@ -134,7 +134,7 @@ const renderBlock = (block) => {
             <Text text={value.rich_text} />
           </summary>
           {block.children?.map((child) => (
-            <Fragment key={child.id}>{renderBlock(child)}</Fragment>
+            <Fragment key={child.id}>{renderBlock(child, genre)}</Fragment>
           ))}
         </details>
       );
@@ -142,7 +142,7 @@ const renderBlock = (block) => {
       return (
         <div className={styles.childPage}>
           <strong>{value.title}</strong>
-          {block.children.map((child) => renderBlock(child))}
+          {block.children.map((child) => renderBlock(child, genre))}
         </div>
       );
     case "image":
@@ -221,12 +221,12 @@ const renderBlock = (block) => {
     case "column_list": {
       return (
         <div className={styles.row}>
-          {block.children.map((block) => renderBlock(block))}
+          {block.children.map((block) => renderBlock(block, genre))}
         </div>
       );
     }
     case "column": {
-      return <div>{block.children.map((child) => renderBlock(child))}</div>;
+      return <div>{block.children.map((child) => renderBlock(child, genre))}</div>;
     }
     case "embed": {
       const url = value.url;
@@ -310,12 +310,12 @@ export default function Post({ page, blocks, tagList, genre, title }) {
                             return (
                               <Fragment key={block.id}>
                                 {/* 広告 */}
-                                {renderBlock(block)}
+                                {renderBlock(block, genre)}
                               </Fragment>
                             )
                           } else {
                             return (
-                              <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+                              <Fragment key={block.id}>{renderBlock(block, genre)}</Fragment>
                             )
                           }
                           
