@@ -1,7 +1,7 @@
 /** ドメイン */
-export const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN//'https://duotaro.github.io'
+export const DOMAIN = 'https://duotaro.github.io'
 /** baseurl */
-export const BASE_URL = process.env.NEXT_PUBLIC_DOMAIN//'https://duotaro.github.io'
+export const BASE_URL = 'https://duotaro.github.io'
 /** ジャンル */
 export const GENRE_ENUM = {
     GENRE1 : 'ai', 

@@ -328,7 +328,7 @@ export default function Post({ page, blocks, tagList, genre, title }) {
                     <Side />
                     {/* Categories widget*/}
                     <div className="card mb-4">
-                        <div className="card-header  bg-dark text-white"><i class="bi bi-tags m-1"></i>Categories</div>
+                        <div className="card-header  bg-dark text-white"><i className="bi bi-tags m-1"></i>Categories</div>
                         <div className="card-body">
                             <div className="row">
                                 <div className="container">

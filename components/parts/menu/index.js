@@ -9,7 +9,7 @@ export default function Menu({ }) {
         <div className="text-center border-bottom">
             <h5 className="fw-bolder">blog Menu</h5>
         </div>
-        <table class="table">
+        <table className="table">
             <tbody>
             {GENRE_LIST.map((genre) => {
             return (
@@ -24,7 +24,7 @@ export default function Menu({ }) {
             )
             })}
             <tr className="list-unstyled" >
-                <th scope="row"><i class="bi bi-key-fill"></i></th>
+                <th scope="row"><i className="bi bi-key-fill"></i></th>
                 <td>
                 <Link href={`/privacy/`} className="link-black"  aria-current="page" >
                     プライバシーポリシー
@@ -32,7 +32,7 @@ export default function Menu({ }) {
                 </td>
             </tr>
             <tr className="list-unstyled" >
-                <th scope="row"><i class="bi bi-bookmark-check"></i></th>
+                <th scope="row"><i className="bi bi-bookmark-check"></i></th>
                 <td>
                 <Link href={`/terms/`} className="link-black"  aria-current="page" >
                     利用規約
@@ -40,7 +40,7 @@ export default function Menu({ }) {
                 </td>
             </tr>
             <tr className="list-unstyled" >
-                <th scope="row"><i class="bi bi-envelope-check"></i></th>
+                <th scope="row"><i className="bi bi-envelope-check"></i></th>
                 <td>
                 <Link href={`/contact/`} className="link-black"  aria-current="page" >
                     Contact

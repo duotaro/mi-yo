@@ -74,7 +74,7 @@ export default function Home({ }) {
             {/* Categories widget*/}
             <div className="card mb-4">
               <div className="card-header  bg-dark text-white">
-                <i class="bi bi-tags m-1"></i>Categories
+                <i className="bi bi-tags m-1"></i>Categories
               </div>
               <div className="card-body">
                   <div className="row">
