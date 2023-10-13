@@ -1,5 +1,5 @@
 module.exports = {
-    siteUrl: 'https://eurekayamauchi.github.io/',
+    siteUrl: 'https://duotaro.github.io/',
     generateRobotsTxt: true,
     sitemapSize: 7000,
     outDir: './public',
