@@ -1,131 +1,149 @@
-import Head from "next/head.js";
-import Link from "next/link.js";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { getDatabase } from "../lib/notion.js";
 import Layout from '../components/layout.js'
+import saveFileIfNeeded from "../components/download/index.js"
+import { ACCESABLE_IMAGE_PATH } from "../const/index.js";
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
-import { GENRE_LIST, GENRES } from "../const/index.js";
-import AdSense from '../components/ads/ad'
-import Side from '../components/parts/widget/side.js'
 
-export const Text = ({ text }) => {
-  if (!text) {
-    return null;
+export default function Home({ list }) {
+
+  const router = useRouter();
+  const { photoId } = router.query;
+
+  let resList = []
+
+  for(const item of list){
+    const entity = new DetailEntity(item)
+    resList.push(entity)
   }
-  return text.map((value) => {
-    const {
-      annotations: { bold, code, color, italic, strikethrough, underline },
-      text,
-    } = value;
-    return (
-      <span
-        className={[
-          bold ? styles.bold : "",
-          code ? styles.code : "",
-          italic ? styles.italic : "",
-          strikethrough ? styles.strikethrough : "",
-          underline ? styles.underline : "",
-        ].join(" ")}
-        style={color !== "default" ? { color } : {}}
-        key={text.content}
-      >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
-      </span>
-    );
-  });
-};
 
-export default function Home({ }) {
-  const tagList = getCategoryList(GENRE_LIST)
+  resList = resList.concat(resList)
+  resList = resList.concat(resList)
+  resList = resList.concat(resList)
+  resList = resList.concat(resList)
 
   return (
     <Layout>
       <Head>
-        <title>Techvenience - トップ -</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Misaki Yota Photos</title>
+        <meta
+          property="og:image"
+          content="https://nextjsconf-pics.vercel.app/og-image.png"
+        />
+        <meta
+          name="twitter:image"
+          content="https://nextjsconf-pics.vercel.app/og-image.png"
+        />
       </Head>
-      <div className="container mt-5">
-        <div className="row">
-          <section className="col-lg-8">
-            <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
-              {tagList.map((post) => {
-                return (
-                    <div className="col mb-5" key={post.name}>
-                        <div className="card h-100">
-                            <img className="card-img-top border-bottom img-responsive" src={post.src} alt="..." />
-                            <div className="card-body p-4">
-                                <div className="text-center">
-                                    <h5 className="fw-bolder">{post.name}</h5>
-                                </div>
-                            </div>
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center">
-                                  <a className="btn btn-outline-dark mt-auto link" href={`/blog/${post.genre}/list`}>記事一覧</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-              })}
+      <div className="mx-auto max-w-[1960px] p-4">
+        {/* {photoId && (
+          <Modal
+            images={list}
+            onClose={() => {
+              setLastViewedPhoto(photoId);
+            }}
+          />
+        )} */}
+        <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4" >
+          <div className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-10 overflow-hidden rounded-lg bg-gray/10 px-6 pb-16 pt-64 text-center text-gray shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:pt-0 border shadow-xl">
+            <div className="absolute inset-0 flex items-center justify-center opacity-20">
+              <span className="absolute left-0 right-0 bottom-0 h-[629px] bg-gradient-to-br from-black/0 via-black to-black "></span>
             </div>
-          </section>
-          {/* Side widgets*/}
-          <section className="col-lg-4">
-            <Side />
-            {/* Categories widget*/}
-            <div className="card mb-4">
-              <div className="card-header  bg-dark text-white">
-                <i className="bi bi-tags m-1"></i>Categories
-              </div>
-              <div className="card-body">
-                  <div className="row">
-                      <div className="container">
-                          <div className="row">
-                            {tagList.map((tag) => {
-                              return (
-                                <div className="col-3" style={{width:'fit-content'}} key={tag.name}>
-                                  <a href={tag.url} className="col  btn btn-outline-secondary m-1"  key={tag.name}>
-                                    #{tag.name}
-                                  </a>
-                                </div>
-                              )
-                            })}
-                          </div>
-                      </div>
-                  </div>
-              </div>
+            
+            <h1 className="mt-8 mb-4 text-xl font-bold uppercase tracking-widest">
+              Misaki & Yota
+            </h1>
+            <p className="max-w-[40ch] text-gray/75 sm:max-w-[32ch]">
+              Our incredible Next.js community got together in San Francisco for
+              our first ever in-person conference!
+            </p>
+            <div className="max-w-[40ch] text-gray/75 sm:max-w-[32ch]">
+              ここにタグリストとか検索窓
             </div>
-          </section>
-        </div>{/* .row */}
-      </div>{/* .container */}
+          </div>
+          {resList.map((item) => (
+            <Link
+              key={item.id}
+              href={`/?photoId=${item.id}`}
+              as={`/p/${item.id}`}
+              shallow
+              className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
+            >
+              {item.isVideo ? (
+               <video width="640" height="360" controls >
+                <source src={item.image} type={item.image.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
+                お使いのブラウザは動画タグをサポートしていません。
+              </video>
+              ) : (
+                <Image
+                alt={item.title}
+                className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                style={{ transform: "translate3d(0, 0, 0)" }}
+                // placeholder="blur"
+                // blurDataURL={`/og-image.png`}
+                src={item.image}
+                width={720}
+                height={480}
+                sizes="(max-width: 640px) 100vw,
+                  (max-width: 1280px) 50vw,
+                  (max-width: 1536px) 33vw,
+                  25vw"
+              />
+              )}
+            </Link>
+          ))}
+        </div>
+      </div>
     </Layout>
   );
 }
 
-// export const getStaticProps = async () => {
-//   const database = await getDatabase(databaseId);
-//   database.reverse();
-//   return {
-//     props: {
-//       posts: database
-//     },
-//     revalidate: 1,
-//   };
-// };
+export const getStaticProps = async () => {
+  const database = await getDatabase(databaseId);
+  let props = []
+  for(let item of database){
+    props.push(item.properties)
+  }
 
 
-const getCategoryList = (posts) => {
+  saveFileIfNeeded(props, "detail")
+  return {
+    props: {
+      list: database
+    },
+    revalidate: 1,
+  };
+};
 
-  let tagList = []
-  let tagNameList = []
-  
-  posts.map((tag) => {
-    if(tag.name == 'Home'){
-      return false;
+class DetailEntity{
+  constructor(item){
+    console.log(item)
+    this.active = item.properties["active"].checkbox
+    this.date = item.properties["date"].date
+
+    this.title = null
+    if(item.properties["名前"] && item.properties["名前"].title[0]){
+      this.title = item.properties["名前"].title[0].text.content
     }
-    if(tagNameList.indexOf(tag.name) < 0){
-      tagList.push(tag)
-      tagNameList.push(tag.name)
+    this.description = null
+    if(item.properties["description"] && item.properties["description"].rich_text[0]){
+      this.description = item.properties["description"].rich_text[0].text.content
     }
-  })
-  return tagList
+    this.image = "/image/noimage.png"
+    if(item.properties["file"].files[0]){
+      //const name = item.properties["image"].files[0].name
+
+      const tmpName = item.properties["file"].files[0].name
+      this.isVideo = tmpName.endsWith('.mov') || tmpName.endsWith('.mp4');
+      const name = tmpName.replace(/ /g, '_')
+      this.image = `/${ACCESABLE_IMAGE_PATH}/detail/${name}`
+
+    }
+
+    console.log(this)
+  }
+
 }
