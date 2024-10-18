@@ -2,6 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+.aboutme {
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+/* Scroll to top style */
+.scrollToTop {
+	@apply bg-indigo-600;
+	@apply text-white;
+	position: fixed;
+	width: 100%;
+	align-items: center;
+	height: 20px;
+	justify-content: center;
+	z-index: 999;
+	cursor: pointer;
+	animation: fadeIn 0.3s;
+	transition: opacity 0.4s;
+	opacity: 0.9;
+}
+
+.scrollToTop:hover {
+	opacity: 1;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.5;
+	}
+}
+
+
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
     img[loading="lazy"] {
       clip-path: inset(0.6px);
