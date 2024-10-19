@@ -9,6 +9,8 @@ import { ACCESABLE_IMAGE_PATH } from "../const/index.js";
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
 import { motion } from 'framer-motion';
+import { GalleryProvider } from "../context/GalleryContext.jsx";
+import GalleryList from "../components/parts/gallery/list.jsx";
 
 export default function Home({ list }) {
 
@@ -16,16 +18,23 @@ export default function Home({ list }) {
   const { photoId } = router.query;
 
   let resList = []
+  let tags = []
 
   for(const item of list){
     const entity = new DetailEntity(item)
-    resList.push(entity)
+    if(entity.image){
+      resList.push(entity)
+    }
+    // entity.tagsが存在する場合に処理を行う
+    if (entity.tags && Array.isArray(entity.tags)) {
+          for (const tag of entity.tags) {
+              // タグがすでに存在しない場合に追加
+              if (!tags.includes(tag.name)) {
+                  tags.push(tag.name);
+              }
+          }
+    }
   }
-
-  resList = resList.concat(resList)
-  resList = resList.concat(resList)
-  resList = resList.concat(resList)
-  resList = resList.concat(resList)
 
   resList.sort((a, b) => new Date(b.date.start) - new Date(a.date.start));
 
@@ -55,16 +64,11 @@ export default function Home({ list }) {
           content="https://nextjsconf-pics.vercel.app/og-image.png"
         />
       </Head>
-      <div className="container mx-auto max-w-[1960px] p-4">
-        {/* {photoId && (
-          <Modal
-            images={list}
-            onClose={() => {
-              setLastViewedPhoto(photoId);
-            }}
-          />
-        )} */}
-        <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4" >
+      <div className="container mx-auto max-w-[1960px] p-8">
+        <GalleryProvider list={resList} tags={tags}>
+          <GalleryList />
+        </GalleryProvider>
+        {/* <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4" >
           {resList.map((item, index) => (
             <motion.div
             className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight" 
@@ -113,7 +117,7 @@ export default function Home({ list }) {
             </Link>
             </motion.div>
           ))}
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
@@ -161,7 +165,9 @@ class DetailEntity{
 
     }
 
-    console.log(this)
+    this.tags = item.properties["tag"].multi_select
+    this.tag = item.properties["tag"].multi_select[0].name
+
   }
 
 }
