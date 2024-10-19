@@ -21,7 +21,7 @@ const GalleryDetail = ({ gallery }) => {
 
 	return (
 		<motion.div
-			className="after:content group relative mb-5 block w-full after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight" 
+			className="group relative mb-5 block w-full " 
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1, delay: 1 }}
 			transition={{
