@@ -20,7 +20,7 @@ const GalleryDetail = ({ gallery }) => {
 	  };
 
 	return (
-		<motion.div
+		<div
 			className="group relative mb-5 block w-full " 
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1, delay: 1 }}
@@ -60,7 +60,7 @@ const GalleryDetail = ({ gallery }) => {
                 //   {gallery.title}
                 // </div>
               )}
-		</motion.div>
+		</div>
 	);
 };
 
