@@ -30,12 +30,6 @@ const GalleryDetail = ({ gallery }) => {
 				delay: 0.15,
 			}}
 		>
-		  <Link
-              key={gallery.id}
-              href={`/?photoId=${gallery.id}`}
-              as={`/p/${gallery.id}`}
-              shallow
-            >
               {gallery.image ? (
                 <>
                 {gallery.isVideo ? (
@@ -66,7 +60,6 @@ const GalleryDetail = ({ gallery }) => {
                 //   {gallery.title}
                 // </div>
               )}
-            </Link>
 		</motion.div>
 	);
 };
