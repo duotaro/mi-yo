@@ -1,14 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { getDatabase } from "../lib/notion.js";
 import Layout from '../components/layout.js'
 import saveFileIfNeeded from "../components/download/index.js"
 import { ACCESABLE_IMAGE_PATH } from "../const/index.js";
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
-
-import { motion } from 'framer-motion';
 import { GalleryProvider } from "../context/GalleryContext.jsx";
 import GalleryList from "../components/parts/gallery/list.jsx";
 
@@ -60,56 +56,6 @@ export default function Home({ list }) {
         <GalleryProvider list={resList} tags={tags}>
           <GalleryList />
         </GalleryProvider>
-        {/* <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4" >
-          {resList.map((item, index) => (
-            <motion.div
-            className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight" 
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              ease: 'easeInOut',
-              duration: 0.9,
-              delay: 0.1*0.1*index,
-            }}>
-            <Link
-              key={item.id}
-              href={`/?photoId=${item.id}`}
-              as={`/p/${item.id}`}
-              shallow
-            >
-              {item.image ? (
-                <>
-                {item.isVideo ? (
-                <video width="640" height="360" controls className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110">
-                  <source src={item.image} type={item.image.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
-                  お使いのブラウザは動画タグをサポートしていません。
-                </video>
-                ) : (
-                  <Image
-                  alt={item.title}
-                  className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                  style={{ transform: "translate3d(0, 0, 0)" }}
-                  // placeholder="blur"
-                  // blurDataURL={`/og-image.png`}
-                  src={item.image}
-                  width={720}
-                  height={480}
-                  sizes="(max-width: 640px) 100vw,
-                    (max-width: 1280px) 50vw,
-                    (max-width: 1536px) 33vw,
-                    25vw"
-                />
-                )}
-                </>
-              ) : (
-                <div className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-80 border h-40 bg-gray-50 p-6" styles={styles}>
-                  {item.title}
-                </div>
-              )}
-            </Link>
-            </motion.div>
-          ))}
-        </div> */}
       </div>
     </Layout>
   );
@@ -134,7 +80,6 @@ export const getStaticProps = async () => {
 
 class DetailEntity{
   constructor(item){
-    console.log(item)
     this.active = item.properties["active"].checkbox
     this.date = item.properties["date"].date
 
