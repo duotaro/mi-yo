@@ -42,3 +42,24 @@
       clip-path: inset(0.6px);
     }
   }
+
+
+  /* 全体の背景色を変更 */
+
+  
+  /* イベントの背景色を変更 */
+  .fc-event {
+	background-color: #007bff; /* イベントの背景色 */
+	color: white; /* イベントの文字色 */
+  }
+  
+  /* 日付セルの文字色を変更 */
+  .fc-day {
+	color: #333; /* 日付セルの文字色 */
+  }
+
+
+  
+  .dark .fc-day {
+	color: #edf2f7; /* ダークモード文字色 */
+  }

@@ -6,6 +6,20 @@ const selectOptions = [
 ];
 
 const GallerysFilter = ({ setSelectGallery, tagList }) => {
+	let nameList
+	const optionLabel = (option) => {
+		switch (option) {
+			case "misaki":
+				return "実咲";
+			case "yota":
+				return "陽太";
+			case "create":
+				return "創作";
+			case "music":
+				return "音楽";
+		}
+	}
+
 	return (
 		<select
 			onChange={(e) => {
@@ -28,12 +42,12 @@ const GallerysFilter = ({ setSelectGallery, tagList }) => {
             "
 		>
 			<option value={setSelectGallery} className="text-sm sm:text-md">
-				All Gallerys
+				全て
 			</option>
 
 			{tagList.map((option) => (
-				<option className="text-normal sm:text-md" key={option}>
-					{option}
+				<option className="text-normal sm:text-md" key={option} value={option}>
+					{optionLabel(option)}
 				</option>
 			))}
 		</select>
