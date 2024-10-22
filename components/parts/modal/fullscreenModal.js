@@ -24,7 +24,7 @@ const FullScreenModal = ({ isOpen, onClose, title, className, children }) => {
     exit={{ opacity: 0 }} 
     transition={{ duration: 0.5 }} className={`fixed inset-0 flex items-center justify-center z-50 min-w-ful ${className}`}>
       {/* 背景 */}
-      <div className="absolute inset-0 bg-black opacity-50 backdrop-filter backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black opacity-50 backdrop-filter backdrop-blur-lg" />
       
       {/* モーダルコンテンツ */}
       <div className="relative backdrop-filter backdrop-blur rounded-lg shadow-lg p-4 w-full h-full max-w-full overflow-auto">
