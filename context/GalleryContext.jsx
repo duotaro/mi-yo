@@ -9,10 +9,7 @@ export const GalleryProvider = ({list, tags, children}) => {
 	const [tagList, setTagList] = useState(tags);
 	const [searchGallery, setSearchGallery] = useState('');
 	const [selectGallery, setSelectGallery] = useState('');
-
-
-	console.log("-----console.log(gallerys)----")
-	console.log(gallerys)
+	const [detail, setDetail] = useState(null);
 
 	// Search gallerys by gallery title
 	const searchGalleryByTitle = gallerys.filter((item) => {
@@ -41,6 +38,8 @@ export const GalleryProvider = ({list, tags, children}) => {
 				selectGallery,
 				setSelectGallery,
 				selectGalleryByCategory,
+				detail,
+				setDetail
 			}}
 		>
 			{children}

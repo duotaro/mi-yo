@@ -1,10 +1,18 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
-
+import { ArrowsPointingOutIcon } from "@heroicons/react/16/solid";
+import { GalleryContext } from '../../../context/GalleryContext'
+import { useContext } from 'react';
 
 const GalleryDetail = ({ gallery }) => {
+  const {
+		setDetail
+	} = useContext(GalleryContext);
 
+  const handleClick = (e) => {
+    setDetail(gallery)
+  }
+  
 	const styles = {
 		transform: "translate3d(0, 0, 0)",
 		width: '25vw',
@@ -17,11 +25,11 @@ const GalleryDetail = ({ gallery }) => {
 		'@media (max-width: 640px)': {
 		  width: '100vw',
 		},
-	  };
+	};
 
 	return (
 		<motion.div
-			className="group relative mb-5 block w-full " 
+			className="group relative mb-5 block w-full z-10" 
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1, delay: 1 }}
 			transition={{
@@ -32,27 +40,35 @@ const GalleryDetail = ({ gallery }) => {
 		>
               {gallery.image ? (
                 <>
-                {gallery.isVideo ? (
-                <video width="640" height="360" controls className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110" styles={styles}>
-                  <source src={gallery.image} type={gallery.image.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
-                  お使いのブラウザは動画タグをサポートしていません。
-                </video>
-                ) : (
-                  <Image
-                  alt={gallery.title}
-                  className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                  style={{ transform: "translate3d(0, 0, 0)" }}
-                  // placeholder="blur"
-                  // blurDataURL={`/og-image.png`}
-                  src={gallery.image}
-                  width={720}
-                  height={480}
-                  sizes="(max-width: 640px) 100vw,
-                    (max-width: 1280px) 50vw,
-                    (max-width: 1536px) 33vw,
-                    25vw"
-                />
-                )}
+                <div className="relative ">
+                  {gallery.isVideo ? (
+                  <video controls className="transform w-full rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110" styles={styles}>
+                    <source src={gallery.image} type={gallery.image.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
+                    お使いのブラウザは動画タグをサポートしていません。
+                  </video>
+                  ) : (
+                    <Image
+                    alt={gallery.title}
+                    className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                    style={{ transform: "translate3d(0, 0, 0)" }}
+                    // placeholder="blur"
+                    // blurDataURL={`/og-image.png`}
+                    src={gallery.image}
+                    width={720}
+                    height={480}
+                    sizes="(max-width: 640px) 100vw,
+                      (max-width: 1280px) 50vw,
+                      (max-width: 1536px) 33vw,
+                      25vw"
+                  />
+                  )}
+                  <button
+                    onClick={handleClick} // モーダル表示のロジックを実装する関数
+                    className="absolute top-2 right-2 p-2 bg-white rounded-full shadow hover:bg-gray-200"
+                  >
+                    <ArrowsPointingOutIcon className="w-5 h-5"/>
+                  </button>
+                </div>
                 </>
               ) : (
 				<></>

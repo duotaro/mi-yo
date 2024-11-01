@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { XCircleIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
-const FullScreenModal = ({ isOpen, onClose, title, className, children }) => {
+const FullScreenModal = ({ isOpen, onClose, isShowCloseBtn, className, children }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'; // モーダルオープン時にスクロールを無効にする
@@ -22,14 +22,14 @@ const FullScreenModal = ({ isOpen, onClose, title, className, children }) => {
     initial={{ opacity: 0 }} 
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }} 
-    transition={{ duration: 0.5 }} className={`fixed inset-0 flex items-center justify-center z-50 min-w-ful ${className}`}>
+    transition={{ duration: 0.5 }} className={`fullmodal fixed inset-0 flex items-center justify-center z-50 max-h-screen min-w-full ${className} overflow-hidden`}>
       {/* 背景 */}
-      <div className="absolute inset-0 bg-black opacity-50 backdrop-filter backdrop-blur-lg" />
+      <div className="absolute inset-0 bg-black opacity-50 backdrop-filter backdrop-blur-xl" />
       
       {/* モーダルコンテンツ */}
-      <div className="relative backdrop-filter backdrop-blur rounded-lg shadow-lg p-4 w-full h-full max-w-full overflow-auto">
-        {/* <button className="absolute top-4 right-2 text-white" onClick={onClose}><XCircleIcon className='w-8 h-8' /></button> */}  
-        <div className="">
+      <div className="relative backdrop-filter backdrop-blur rounded-lg shadow-lg p-4 w-full h-full max-w-full overflow-hidden">
+        {isShowCloseBtn && ( <button className="absolute top-4 right-2 text-white" onClick={onClose}><XCircleIcon className='w-8 h-8' /></button> )}
+        <div className="overflow-hidden">
           {children} {/* ここに子要素を表示 */}
         </div>
       </div>
