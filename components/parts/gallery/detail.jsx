@@ -51,8 +51,8 @@ const GalleryDetail = ({ gallery }) => {
                     alt={gallery.title}
                     className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
                     style={{ transform: "translate3d(0, 0, 0)" }}
-                    // placeholder="blur"
-                    // blurDataURL={`/og-image.png`}
+                    placeholder="blur"
+                    blurDataURL={`/image/loading.gif`}
                     src={gallery.image}
                     width={720}
                     height={480}

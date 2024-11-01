@@ -133,61 +133,32 @@ const GalleryList = () => {
                           {detail.title}
                         </h4>
                     </div>
-                    <div class="flex-grow relative w-full rounded-lg">
+                    <div class="flex-grow relative w-full rounded-lg flex justify-center p-4">
                       {detail.isVideo ? (
-                        <video controls className="absolute inset-0 w-full h-full object-contain transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110" style={{}}>
+                        <video controls className="max-h-full absolute object-contain transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110" style={{}}>
                           <source src={detail.image} type={detail.image.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
                           お使いのブラウザは動画タグをサポートしていません。
                         </video>
                         ) : (
                           <Image
                           alt={detail.title}
-                          className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                          style={{ transform: "translate3d(0, 0, 0)" }}
-                          // placeholder="blur"
-                          // blurDataURL={`/og-image.png`}
+                          className="max-h-full transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                          style={{ transform: "translate3d(0, 0, 0)", objectFit: "contain" }}
+                          placeholder="blur"
+                          blurDataURL={`/image/loading.gif`}
                           src={detail.image}
-                          layout="fill"
-                          objectFit="contain"
+                          fill={true}
                           sizes=""
+                          loading = 'lazy'
                         />
                       )}
                     </div>
-                    <div class="flex h-16 p-4 items-center justify-between">
+                    <div class="flex h-32 p-4 mb-5 items-center justify-between">
                       <div class="flex items-center gap-16">
                         <div>
-                          <p class="text-slate-500 text-sm">
-                            Views
-                          </p>
-                          <p class="text-slate-800 font-medium">
-                            44,082,044
-                          </p>
-                        </div>
-                        <div>
-                          <p class="text-slate-500 text-sm">
-                            Downloads
-                          </p>
-                          <p class="text-slate-800 font-medium">
-                            553,031
-                          </p>
+                          {detail.description}
                         </div>
                       </div>
-                      <button class="flex items-center rounded-md border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          aria-hidden="true"
-                          class="h-4 w-4 mr-1.5"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M15.75 4.5a3 3 0 11.825 2.066l-8.421 4.679a3.002 3.002 0 010 1.51l8.421 4.679a3 3 0 11-.729 1.31l-8.421-4.678a3 3 0 110-4.132l8.421-4.679a3 3 0 01-.096-.755z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        Share
-                      </button>
                     </div>
                   </div>
                 )}
